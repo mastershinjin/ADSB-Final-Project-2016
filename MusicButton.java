@@ -10,18 +10,13 @@ import javafx.stage.Stage;
 
 public class MusicButton {
 	private final long initialTime;
-	private ImageView musicButton;
-	private double x;
-	private double y;
+	private Image musicButton;
 	private boolean wasPressed;
 	
 	//Constructors:
 	public MusicButton(double xCoordinate, double yCoordinate){
-		Image hitButton = new Image("http://www.tsunderepanda.com/TsunderePanda/osu!/Skins/cardcaptor%20sakura/hitcircleselect.png");
-		ImageView musicButton = new ImageView(hitButton);
+		musicButton = new Image("http://www.tsunderepanda.com/TsunderePanda/osu!/Skins/cardcaptor%20sakura/hitcircleselect.png", xCoordinate, yCoordinate, false, false);
 		initialTime = System.nanoTime()/1000000000;
-		x = xCoordinate;
-		y = yCoordinate;
 		wasPressed = false;
 	}
 	
@@ -31,13 +26,14 @@ public class MusicButton {
 		return initialTime;
 	}
 	
-	public ImageView getImage(){
+	public Image getImage(){
 		return musicButton;
 	}
 	
 	public boolean isAlive(ScoreGauge scoreKeeper){
 		if(wasPressed || (System.nanoTime() - initialTime)/1000000000 > 1){
 			if(!wasPressed){
+				//rethink this?
 				scoreKeeper.playerScore -= 30;
 			}
 			return false;
