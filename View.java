@@ -29,7 +29,7 @@ public class View extends Application
     public void start(Stage theStage) {
     	
     	//The music playing part of the code (it works)
-    	theStage.setTitle("Hello World!");
+    	theStage.setTitle("Uso!");
 
     	String musicFile = "sample2.mp3";     // For example
 
@@ -43,14 +43,15 @@ public class View extends Application
         theStage.setScene( theScene );
         
 
-        Canvas canvas = new Canvas( 512, 512 );
+        Canvas canvas = new Canvas( 1272, 817 );
         root.getChildren().add( canvas );
 
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
         Image earth = new Image( "earth.png" );
-        Image sun   = new Image( "sun.png" );
-        Image space = new Image( "space.png" );
+        Image space = new Image( "usobackground1.jpg" );
+        MusicButton button = new MusicButton(196,196);
+ 
 
         final long startNanoTime = System.nanoTime();
 
@@ -64,12 +65,12 @@ public class View extends Application
                 double y = 232 + 128 * Math.sin(t);
 
                 // Clear the canvas
-                gc.clearRect(0, 0, 512,512);
+                gc.clearRect(0, 0, 1272,817);
 
                 // background image clears canvas
                 gc.drawImage( space, 0, 0 );
                 gc.drawImage( earth, x, y );
-                gc.drawImage( sun, 196, 196 );
+                gc.drawImage( button.getImage(), 196, 196);
             }
         }.start();
 		
@@ -80,3 +81,4 @@ public class View extends Application
         
     }
 }
+
