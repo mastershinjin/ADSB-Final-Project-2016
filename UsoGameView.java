@@ -3,12 +3,14 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -29,9 +31,32 @@ public class UsoGameView extends Application{
 		
 		root.getChildren().add(canvas);
 		
+		
 		GraphicsContext gc = canvas.getGraphicsContext2D();
 		
 		MusicButton test = new MusicButton(100,100);
+		
+		ScoreGauge sc = new ScoreGauge();
+		
+		gameScene.setOnMouseClicked(
+				new EventHandler<MouseEvent>(){
+					public void handle(MouseEvent e){
+						if(test.hitCircle.contains(e.getX(), e.getY())){
+							if(test.isAlive(sc)){
+								test.disappear();
+								sc.updateScore(10, gc);
+							}else{
+								test.disappear();
+								sc.updateScore(-15, gc);
+							}
+						}
+						MusicButton next = new MusicButton(100,100);
+						
+					}
+				}
+			);
+		
+		
 		
 		new AnimationTimer(){
 			public void handle(long currentNanoTime){
