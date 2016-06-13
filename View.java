@@ -31,7 +31,8 @@ public class View extends Application
     	//The music playing part of the code (it works)
     	theStage.setTitle("Uso!");
 
-    	String musicFile = "Nightcore - Infinity.mp3";     // For example
+    	String musicFile = "Nightcore - Infinity.mp3";
+    	//http://mp3songx.com/4rdce/download-Nightcore---Infinity-mp3.html
 
     	Media sound = new Media(new File(musicFile).toURI().toString());
     	MediaPlayer mediaPlayer = new MediaPlayer(sound);
